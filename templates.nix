@@ -14,7 +14,7 @@
     description = "Nodejs (v14) and pnpm (v5) development environment";
   };
 
-  php72 = {
+  php71 = {
     path = ./php71;
     description = "PHP 7.1 development environment";
   };
