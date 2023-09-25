@@ -14,9 +14,4 @@
     description = "Nodejs (v14) and pnpm (v5) development environment";
   };
 
-  react-native = {
-    path = ./react-native;
-    description = "React Native development environment";
-  };
-
 }
