@@ -15,8 +15,8 @@
   };
 
   php72 = {
-    path = ./php72;
-    description = "PHP 7.2 development environment";
+    path = ./php71;
+    description = "PHP 7.1 development environment";
   };
 
 }

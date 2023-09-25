@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
-    phps.url = "github:fossar/nix-phps";
+    phps.url = "github:loophp/nix-shell";
   };
 
   outputs = { self, nixpkgs, phps, utils }:
@@ -16,11 +16,11 @@
       {
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = with pkgs; [
-            phps.packages.aarch64-darwin.php72
+            phps.env-php71
           ];
 
           shellHook = ''
-
+            php -v
           '';
         };
       });
