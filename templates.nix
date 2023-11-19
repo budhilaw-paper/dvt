@@ -19,4 +19,9 @@
     description = "PHP 7.1 development environment";
   };
 
+  php73 = {
+    path = ./php73;
+    description = "PHP 7.3 development environment";
+  };
+
 }
