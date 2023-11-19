@@ -1,33 +1,24 @@
 {
-  description = "A Nix-flake-based PHP 7.2 development environment";
+  description = "A Nix-flake-based PHP 7.1 development environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
-    phps.url = "github:loophp/nix-shell";
+    phps.url = "github:fossar/nix-phps";
   };
 
-  outputs = { self, nixpkgs, phps, utils }:
+  outputs = { self, nixpkgs, utils, phps }:
 
     utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-
-          overlays = [
-            inputs.phps.overlays.default
-          ];
-        };
+        pkgs = import nixpkgs { inherit system; };
       in
       {
         devShells.default = pkgs.mkShellNoCC {
-          buildInputs = with pkgs; [
-            pkgs.env-php71
+          buildInputs = [
+            phps.packages.${system}.php71
+            phps.packages.${system}.php71.packages.composer
           ];
-
-          shellHook = ''
-            php -v
-          '';
         };
       });
 }
