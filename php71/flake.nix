@@ -11,12 +11,18 @@
 
     utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+
+          overlays = [
+            inputs.phps.overlays.default
+          ];
+        };
       in
       {
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = with pkgs; [
-            phps.env-php71
+            pkgs.env-php71
           ];
 
           shellHook = ''
